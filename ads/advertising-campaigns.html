@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advertising Campaigns | Pedro Gain Studios</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .campaign-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #f5f6fa 0%, white 100%);
+        }
+
+        .campaign-banner {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .campaign-banner:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        .campaign-banner h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .campaign-banner p {
+            font-size: 1em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+
+        .ad-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .view-ad-btn {
+            background: white;
+            color: var(--primary-color);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1em;
+        }
+
+        .view-ad-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .ad-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+
+        .featured-ads-section {
+            padding: 60px 20px;
+            background: white;
+        }
+
+        .ads-carousel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .ad-item {
+            background: linear-gradient(135deg, #f5f6fa 0%, white 100%);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .ad-item:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(108, 92, 231, 0.2);
+        }
+
+        .ad-icon {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .ad-item:hover .ad-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .ad-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            font-size: 1.3em;
+        }
+
+        .ad-item p {
+            color: var(--text-light);
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .video-ads-section {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .video-ad-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .video-ad-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: white;
+            transform: scale(1.05);
+        }
+
+        .play-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .duration-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            margin-bottom: 10px;
+        }
+
+        .social-ads-section {
+            padding: 60px 20px;
+            background: var(--light-bg);
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .social-ad {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .social-ad:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .social-icon {
+            font-size: 2.5em;
+            margin-bottom: 12px;
+        }
+
+        .social-ad h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .cta-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .primary-cta {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 16px 45px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+
+        .primary-cta:hover {
+            background: #27ae60;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .secondary-cta {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 14px 40px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+
+        .secondary-cta:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>🎮 Pedro Gain Studios</h1>
+                <p class="owner">Powered by fkjjce</p>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="#campaigns">Campaigns</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Premium Advertising Campaigns</h1>
+            <p>Reach Millions of Players & Customers Worldwide</p>
+            <p class="tagline">Trusted by Pedro Gain Studios | Owner: <strong>fkjjce</strong></p>
+            <button class="cta-button">Browse Campaigns</button>
+        </div>
+    </section>
+
+    <!-- Featured Campaign Banners -->
+    <section id="campaigns" class="campaign-showcase">
+        <div class="container" style="grid-column: 1/-1;">
+            <h2 style="text-align: center; font-size: 2.5em; color: var(--primary-color); margin-bottom: 40px;">Featured Ad Campaigns</h2>
+        </div>
+
+        <div class="campaign-banner">
+            <span class="ad-badge">🎮 GAMING ADS</span>
+            <h3>Mobile Gaming Campaign</h3>
+            <p>Target 10 million active gaming users with precision-targeted ads. Perfect for game launches and in-app promotions.</p>
+            <div class="ad-stats">
+                <div class="stat">
+                    <div class="stat-number">10M+</div>
+                    <div class="stat-label">Daily Players</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">8%</div>
+                    <div class="stat-label">Conversion</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">$0.50</div>
+                    <div class="stat-label">CPM Rate</div>
+                </div>
+            </div>
+            <button class="view-ad-btn">View Campaign</button>
+        </div>
+
+        <div class="campaign-banner">
+            <span class="ad-badge">🎬 VIDEO ADS</span>
+            <h3>HD Video Advertising</h3>
+            <p>Engaging 15-60 second video ads with HD quality. Maximum impact on desktops, mobile, and tablets worldwide.</p>
+            <div class="ad-stats">
+                <div class="stat">
+                    <div class="stat-number">5M+</div>
+                    <div class="stat-label">Monthly Views</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">6.5%</div>
+                    <div class="stat-label">CTR Rate</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">$2.00</div>
+                    <div class="stat-label">CPV Rate</div>
+                </div>
+            </div>
+            <button class="view-ad-btn">View Campaign</button>
+        </div>
+
+        <div class="campaign-banner">
+            <span class="ad-badge">💰 MONETIZATION</span>
+            <h3>Premium Publisher Program</h3>
+            <p>Join our elite publisher network and earn revenue from your audience. Get paid for every impression and click.</p>
+            <div class="ad-stats">
+                <div class="stat">
+                    <div class="stat-number">75%</div>
+                    <div class="stat-label">Revenue Share</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">24h</div>
+                    <div class="stat-label">Payment</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">$100K+</div>
+                    <div class="stat-label">Top Publisher</div>
+                </div>
+            </div>
+            <button class="view-ad-btn">Join Now</button>
+        </div>
+    </section>
+
+    <!-- Featured Ads Section -->
+    <section class="featured-ads-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5em; color: var(--primary-color); margin-bottom: 50px;">Our Ad Solutions</h2>
+            <div class="ads-carousel">
+                <div class="ad-item">
+                    <div class="ad-icon">📱</div>
+                    <h4>Mobile Banner Ads</h4>
+                    <p>High-performing banner ads optimized for mobile devices. Get instant visibility across gaming apps.</p>
+                </div>
+                <div class="ad-item">
+                    <div class="ad-icon">🎯</div>
+                    <h4>Targeted Display Ads</h4>
+                    <p>Precision targeting by demographics, interests, and behavior. Reach your ideal audience instantly.</p>
+                </div>
+                <div class="ad-item">
+                    <div class="ad-icon">💻</div>
+                    <h4>Desktop Placement</h4>
+                    <p>Premium desktop ad placements on high-traffic websites. Maximum visibility for your brand.</p>
+                </div>
+                <div class="ad-item">
+                    <div class="ad-icon">🔥</div>
+                    <h4>Trending Campaigns</h4>
+                    <p>Capitalize on trending topics and viral moments. Real-time ad optimization for maximum impact.</p>
+                </div>
+                <div class="ad-item">
+                    <div class="ad-icon">🌟</div>
+                    <h4>Premium Sponsorships</h4>
+                    <p>Exclusive sponsorship opportunities with top gaming streamers and influencers.</p>
+                </div>
+                <div class="ad-item">
+                    <div class="ad-icon">📊</div>
+                    <h4>Analytics & Reporting</h4>
+                    <p>Real-time dashboard with detailed metrics, ROI tracking, and performance analytics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Ads Section -->
+    <section class="video-ads-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5em; margin-bottom: 20px;">Video Ad Formats</h2>
+            <p style="text-align: center; font-size: 1.1em; margin-bottom: 40px;">Choose from multiple video ad formats to maximize engagement and conversions</p>
+            <div class="video-grid">
+                <div class="video-ad-card">
+                    <div class="play-icon">▶️</div>
+                    <div class="duration-badge">15 Seconds</div>
+                    <h4>Quick Impact Ads</h4>
+                    <p>Short, punchy ads perfect for social media and mobile. Maximum reach with minimal production cost.</p>
+                </div>
+                <div class="video-ad-card">
+                    <div class="play-icon">▶️</div>
+                    <div class="duration-badge">30 Seconds</div>
+                    <h4>Standard Video Ads</h4>
+                    <p>Industry-standard format with proven results. Perfect for product demonstrations and brand awareness.</p>
+                </div>
+                <div class="video-ad-card">
+                    <div class="play-icon">▶️</div>
+                    <div class="duration-badge">60 Seconds</div>
+                    <h4>Premium Storytelling</h4>
+                    <p>Tell your full brand story with premium video ads. Deep narrative engagement for maximum impact.</p>
+                </div>
+                <div class="video-ad-card">
+                    <div class="play-icon">▶️</div>
+                    <div class="duration-badge">Skippable</div>
+                    <h4>Interactive Video</h4>
+                    <p>Engaging interactive videos with clickable elements. Viewers choose how deep they engage.</p>
+                </div>
+                <div class="video-ad-card">
+                    <div class="play-icon">▶️</div>
+                    <div class="duration-badge">Live Stream</div>
+                    <h4>Live Streaming Ads</h4>
+                    <p>Real-time engagement through live streaming ads. Connect directly with gaming audiences.</p>
+                </div>
+                <div class="video-ad-card">
+                    <div class="play-icon">▶️</div>
+                    <div class="duration-badge">360° VR</div>
+                    <h4>Immersive VR Ads</h4>
+                    <p>Cutting-edge VR advertising. Completely immersive brand experiences for tech-savvy audiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Ads Section -->
+    <section class="social-ads-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5em; color: var(--primary-color); margin-bottom: 50px;">Social Media Advertising</h2>
+            <div class="social-grid">
+                <div class="social-ad">
+                    <div class="social-icon">𝕏</div>
+                    <h4>Twitter/X Ads</h4>
+                    <p>Reach trending conversations and engaged audiences. Perfect for announcements and real-time engagement.</p>
+                    <button class="ad-button" style="margin-top: 15px;">Advertise Now</button>
+                </div>
+                <div class="social-ad">
+                    <div class="social-icon">💬</div>
+                    <h4>Discord Sponsorships</h4>
+                    <p>Connect with gaming communities. Server sponsorships and bot integrations for gaming audiences.</p>
+                    <button class="ad-button" style="margin-top: 15px;">Sponsor Server</button>
+                </div>
+                <div class="social-ad">
+                    <div class="social-icon">▶️</div>
+                    <h4>YouTube Ads</h4>
+                    <p>TrueView, pre-roll, and overlay ads on the world's largest video platform. Massive gaming audience.</p>
+                    <button class="ad-button" style="margin-top: 15px;">Start Campaign</button>
+                </div>
+                <div class="social-ad">
+                    <div class="social-icon">📸</div>
+                    <h4>Instagram Stories</h4>
+                    <p>Full-screen ads in Instagram Stories. Perfect for visual brand storytelling to Gen Z audiences.</p>
+                    <button class="ad-button" style="margin-top: 15px;">Create Ad</button>
+                </div>
+                <div class="social-ad">
+                    <div class="social-icon">👥</div>
+                    <h4>Facebook Ads</h4>
+                    <p>Precision targeting through Facebook's massive network. Carousel ads, lead generation, and more.</p>
+                    <button class="ad-button" style="margin-top: 15px;">Set Up Now</button>
+                </div>
+                <div class="social-ad">
+                    <div class="social-icon">🎮</div>
+                    <h4>Twitch Integration</h4>
+                    <p>Sponsored content on Twitch streams. Partner with top streamers for authentic brand promotion.</p>
+                    <button class="ad-button" style="margin-top: 15px;">Find Streamers</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="websites-section">
+        <div class="container">
+            <h2>Advertising Packages</h2>
+            <div class="websites-grid">
+                <div class="website-card">
+                    <h3>Starter</h3>
+                    <p style="font-size: 1.5em; color: var(--primary-color); margin: 15px 0;">$499/month</p>
+                    <p>Perfect for small businesses launching their first campaign</p>
+                    <ul>
+                        <li>✓ Up to 2M impressions</li>
+                        <li>✓ Basic Analytics</li>
+                        <li>✓ 1 Campaign</li>
+                        <li>✓ Email Support</li>
+                        <li>✓ Standard Ad Formats</li>
+                    </ul>
+                    <button class="website-button">Get Started</button>
+                </div>
+                <div class="website-card">
+                    <h3>Professional</h3>
+                    <p style="font-size: 1.5em; color: var(--accent-color); margin: 15px 0;">$1,299/month</p>
+                    <p>Ideal for growing businesses with multiple campaigns</p>
+                    <ul>
+                        <li>✓ Up to 15M impressions</li>
+                        <li>✓ Advanced Analytics</li>
+                        <li>✓ 5 Active Campaigns</li>
+                        <li>✓ Priority Support</li>
+                        <li>✓ All Ad Formats</li>
+                        <li>✓ A/B Testing</li>
+                    </ul>
+                    <button class="website-button">Choose Plan</button>
+                </div>
+                <div class="website-card">
+                    <h3>Enterprise</h3>
+                    <p style="font-size: 1.5em; color: var(--primary-color); margin: 15px 0;">$4,999/month</p>
+                    <p>Comprehensive solution for large-scale operations</p>
+                    <ul>
+                        <li>✓ Unlimited impressions</li>
+                        <li>✓ AI-Powered Analytics</li>
+                        <li>✓ Unlimited Campaigns</li>
+                        <li>✓ 24/7 Dedicated Support</li>
+                        <li>✓ Premium Ad Formats</li>
+                        <li>✓ Custom Integrations</li>
+                        <li>✓ Personal Account Manager</li>
+                    </ul>
+                    <button class="website-button">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Launch Your Campaign?</h2>
+            <p>Join thousands of successful businesses advertising with Pedro Gain Studios</p>
+            <button class="primary-cta">Start Advertising Now</button>
+            <button class="secondary-cta">Schedule Demo</button>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <form class="contact-form">
+                <input type="text" placeholder="Company Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <input type="tel" placeholder="Phone Number" required>
+                <select required>
+                    <option value="">Select Ad Format</option>
+                    <option value="mobile">Mobile Gaming Ads</option>
+                    <option value="video">Video Campaigns</option>
+                    <option value="social">Social Media Ads</option>
+                    <option value="display">Display Ads</option>
+                    <option value="sponsorship">Sponsorships</option>
+                </select>
+                <textarea placeholder="Tell us about your advertising goals" rows="5" required></textarea>
+                <button type="submit" class="submit-button">Submit Inquiry</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Pedro Gain Studios | Owner: <strong>fkjjce</strong></p>
+            <p>Premium Advertising & Gaming Platform</p>
+            <div class="social-links">
+                <a href="#">Twitter</a> | 
+                <a href="#">Discord</a> | 
+                <a href="#">YouTube</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
